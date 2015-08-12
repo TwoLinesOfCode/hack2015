@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class Class1
-    {
-    }
+	public class Node
+	{
+		public string name { get; set; }
+		public int group { get; set; }
+	}
 }
