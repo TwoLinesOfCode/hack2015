@@ -3,3 +3,8 @@ D:\Git\Hack2015\DataAccessLayer\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
 D:\Git\Hack2015\DataAccessLayer\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
 D:\Git\Hack2015\DataAccessLayer\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 D:\Git\Hack2015\DataAccessLayer\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\Code\Hackathon2015\hack2015\DataAccessLayer\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+D:\Code\Hackathon2015\hack2015\DataAccessLayer\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+D:\Code\Hackathon2015\hack2015\DataAccessLayer\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
+D:\Code\Hackathon2015\hack2015\DataAccessLayer\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+D:\Code\Hackathon2015\hack2015\DataAccessLayer\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

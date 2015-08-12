@@ -1,0 +1,9 @@
+1) On click goto: 
+   i)   show properties
+   ii)  DB info
+   iii) BC info
+2) Ability to select a table
+3) Show some related info:
+	Mouse hover?
+	go to another view
+4) show more than one level.

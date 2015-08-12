@@ -6,3 +6,11 @@ D:\Git\Hack2015\TestClient\bin\Debug\DataAccessLayer.pdb
 D:\Git\Hack2015\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache
 D:\Git\Hack2015\TestClient\obj\Debug\TestClient.exe
 D:\Git\Hack2015\TestClient\obj\Debug\TestClient.pdb
+D:\Code\Hackathon2015\hack2015\TestClient\bin\Debug\TestClient.exe.config
+D:\Code\Hackathon2015\hack2015\TestClient\obj\Debug\TestClient.exe
+D:\Code\Hackathon2015\hack2015\TestClient\obj\Debug\TestClient.pdb
+D:\Code\Hackathon2015\hack2015\TestClient\bin\Debug\TestClient.exe
+D:\Code\Hackathon2015\hack2015\TestClient\bin\Debug\TestClient.pdb
+D:\Code\Hackathon2015\hack2015\TestClient\bin\Debug\DataAccessLayer.dll
+D:\Code\Hackathon2015\hack2015\TestClient\bin\Debug\DataAccessLayer.pdb
+D:\Code\Hackathon2015\hack2015\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache

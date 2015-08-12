@@ -19,7 +19,7 @@ namespace DataAccessLayer
 
 		public JsonRelation doshit(){
 
-			SqlConnection sqlConnection1 = new SqlConnection("Data Source=.;Initial Catalog=Development;Integrated Security=True");
+			SqlConnection sqlConnection1 = new SqlConnection("Data Source=.;Initial Catalog=temp;Integrated Security=True");
 			SqlCommand cmd = new SqlCommand();
 			SqlDataReader reader;
 			//TO DO : get search from user and replace Persons table
@@ -34,8 +34,8 @@ namespace DataAccessLayer
 								join DDTables DDT2 on ddt2.ID = ddr.DDTargetTable
 								join DDColumns DDC1 on ddc1.ID = ddrc.DDColumn
 								join DDColumns DDC2 on ddc2.ID = ddrc.DDTargetColumn
-								where ddt1.TableName = 'Persons'
-								or ddt2.TableName = 'Persons'
+								where ddt1.TableName = 'SalesOrders'
+								or ddt2.TableName = 'SalesOrders'
 								order by 1";
 			cmd.CommandType = System.Data.CommandType.Text;
 			cmd.Connection = sqlConnection1;
