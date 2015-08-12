@@ -2,10 +2,12 @@
    i)   show properties
    ii)  DB info
    iii) BC info
-2) Ability to select a table
+2) Ability to select a table and depth
 3) Show some related info:
 	Mouse hover?
 	go to another view
 4) show more than one level.
 
 5) Show legend in the start page
+
+6) think about how to make use of tree view
