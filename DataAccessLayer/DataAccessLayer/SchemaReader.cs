@@ -59,12 +59,12 @@ namespace DataAccessLayer
 				if (reader.GetValue(0).ToString() == root)
 				{
 
-					nodes.Add(new Node() {name = reader.GetValue(0).ToString(), group = 2});
+					nodes.Add(new Node() {name = reader.GetValue(2).ToString(), group = 2});
 					links.Add(new Link() { source = 0, target = index });
 
 				}else{
 
-					nodes.Add(new Node() {name = reader.GetValue(3).ToString(), group = 3});
+					nodes.Add(new Node() {name = reader.GetValue(0).ToString(), group = 3});
 					links.Add(new Link() { source = index, target = 0 });
 				}
 
