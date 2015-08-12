@@ -7,3 +7,5 @@
 	Mouse hover?
 	go to another view
 4) show more than one level.
+
+5) Show legend in the start page
