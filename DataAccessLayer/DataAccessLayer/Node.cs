@@ -10,6 +10,7 @@ namespace DataAccessLayer
 	{
 		public string name { get; set; }
 		public int group { get; set; }
+		public string relationDescription { get; set; }
 		public ColumnData[] ColumnData { get; set; }
 	}
 }

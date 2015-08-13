@@ -8,36 +8,38 @@ using System.Data.SqlClient;
 
 namespace DataAccessLayer
 {
-    public class SchemaReader
-    {
+	public class SchemaReader
+	{
 		string root;
 		SqlConnection sqlConnection1 = new SqlConnection("Data Source=.;Initial Catalog=Development;MultipleActiveResultSets=true;Integrated Security=True");
-		
+
 
 		public SchemaReader(string root)
 		{
 			this.root = root;
 		}
 
-		public JsonRelation doshit(){
+		public JsonRelation JustDoIt()
+		{
 
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandType = System.Data.CommandType.Text;
 			cmd.Connection = sqlConnection1;
 			cmd.CommandText = String.Format(@"select 
-									ddt1.TableName as ForeignTable, 
-									ddc1.ColumnName as ForeignKey,
-									DDT2.TableName as PrimaryTable,
-									ddc2.ColumnName as PrimaryKey
-								from DDReferences DDR
-								join DDReferenceColumns DDRC on DDRC.DDReference = DDR.ID
-								join DDTables DDT1 on ddt1.ID = ddr.DDTable
-								join DDTables DDT2 on ddt2.ID = ddr.DDTargetTable
-								join DDColumns DDC1 on ddc1.ID = ddrc.DDColumn
-								join DDColumns DDC2 on ddc2.ID = ddrc.DDTargetColumn
-								where ddt1.TableName = '{0}'
-								or ddt2.TableName = '{0}'
-								order by 1", root);
+												ddt1.TableName as ForeignTable, 
+												ddc1.ColumnName as ForeignKey,
+												DDT2.TableName as PrimaryTable,
+												ddc2.ColumnName as PrimaryKey,
+												ddt1.TableName + '.' + ddc1.ColumnName + ' = ' + DDT2.TableName + '.' + ddc2.ColumnName as RelationDescription
+											from DDReferences DDR
+											join DDReferenceColumns DDRC on DDRC.DDReference = DDR.ID
+											join DDTables DDT1 on ddt1.ID = ddr.DDTable
+											join DDTables DDT2 on ddt2.ID = ddr.DDTargetTable
+											join DDColumns DDC1 on ddc1.ID = ddrc.DDColumn
+											join DDColumns DDC2 on ddc2.ID = ddrc.DDTargetColumn
+											where ddt1.TableName = '{0}'
+											or ddt2.TableName = '{0}'
+											order by 1", root);
 
 
 			SqlDataReader reader;
@@ -51,8 +53,8 @@ namespace DataAccessLayer
 			List<Link> links = new List<Link>();
 
 			List<ColumnData> columnDataRoot = doMoreShit(root);
-			nodes.Add(new Node { name = root, group = 1, ColumnData = columnDataRoot.ToArray() });
-			
+			nodes.Add(new Node { name = root, group = 1, relationDescription = "Two Lines Of Code",ColumnData = columnDataRoot.ToArray() });
+
 			int index = 1;
 
 			//List<Relation> relations = new List<Relation>();
@@ -62,12 +64,14 @@ namespace DataAccessLayer
 				if (reader.GetValue(0).ToString() == root)
 				{
 					List<ColumnData> columnData = doMoreShit(reader.GetValue(2).ToString());
-					nodes.Add(new Node() {name = reader.GetValue(2).ToString(), group = 2, ColumnData = columnData.ToArray()});
+					nodes.Add(new Node() { name = reader.GetValue(2).ToString(), group = 2, relationDescription = reader.GetValue(4).ToString(), ColumnData = columnData.ToArray() });
 					links.Add(new Link() { source = 0, target = index });
 
-				}else{
+				}
+				else
+				{
 					List<ColumnData> columnData = doMoreShit(reader.GetValue(0).ToString());
-					nodes.Add(new Node() { name = reader.GetValue(0).ToString(), group = 3, ColumnData = columnData.ToArray() });
+					nodes.Add(new Node() { name = reader.GetValue(0).ToString(), group = 3, relationDescription = reader.GetValue(4).ToString(), ColumnData = columnData.ToArray() });
 					links.Add(new Link() { source = index, target = 0 });
 				}
 
@@ -111,6 +115,6 @@ namespace DataAccessLayer
 
 			return columnData;
 		}
-		
-    }
+
+	}
 }

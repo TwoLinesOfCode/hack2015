@@ -13,16 +13,7 @@ namespace TestClient
 		static void Main(string[] args)
 		{
 			SchemaReader rdr = new SchemaReader("SalesOrders");
-			System.IO.File.WriteAllText("result.json", rdr.doshit().ToJSON());
-
-			//foreach (Relation relation in relations){
-
-			//	Console.WriteLine("FT: " + relation.ForeignTable);
-			//	Console.WriteLine("FK: " + relation.ForeignKey);
-			//	Console.WriteLine("PT: " + relation.PrimaryTable); 
-			//	Console.WriteLine("PK: " + relation.PrimaryKey);
-			//	Console.WriteLine("\n=============\n");
-			//}
+			System.IO.File.WriteAllText("result.json", rdr.JustDoIt().ToJSON());
 		}
 	}
 }
