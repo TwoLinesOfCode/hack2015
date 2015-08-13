@@ -28,6 +28,11 @@
 </head>
 
 <body>
+    <div id="legend" style="float:right;padding-right:50px;padding-top:50px;">
+        <div id="mainTable" style="padding:10px;">Main Table</div>
+        <div id="fromTable" style="padding:10px;">Is Referenced in</div>
+        <div id="toTable" style="padding:10px;">Has Reference to</div>
+    </div>
     <div id="popupdiv" >
         <table id="columnTable" class="table table-striped table-hover">
             <thead>
@@ -198,6 +203,12 @@
             }
         });
 
+        (function () {
+            $("#mainTable").css("background-color", color(1));
+            $("#fromTable").css("background-color", color(3));
+            $("#toTable").css("background-color", color(2));
+            //alert(color(3));
+        })();
     </script>
 </body>
 </html>
