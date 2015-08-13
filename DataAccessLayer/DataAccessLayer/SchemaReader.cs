@@ -11,6 +11,8 @@ namespace DataAccessLayer
     public class SchemaReader
     {
 		string root;
+		SqlConnection sqlConnection1 = new SqlConnection("Data Source=.;Initial Catalog=Development;MultipleActiveResultSets=true;Integrated Security=True");
+		
 
 		public SchemaReader(string root)
 		{
@@ -19,10 +21,9 @@ namespace DataAccessLayer
 
 		public JsonRelation doshit(){
 
-			SqlConnection sqlConnection1 = new SqlConnection("Data Source=.;Initial Catalog=Development;Integrated Security=True");
 			SqlCommand cmd = new SqlCommand();
-			SqlDataReader reader;
-			//TO DO : get search from user and replace Persons table
+			cmd.CommandType = System.Data.CommandType.Text;
+			cmd.Connection = sqlConnection1;
 			cmd.CommandText = String.Format(@"select 
 									ddt1.TableName as ForeignTable, 
 									ddc1.ColumnName as ForeignKey,
@@ -37,11 +38,11 @@ namespace DataAccessLayer
 								where ddt1.TableName = '{0}'
 								or ddt2.TableName = '{0}'
 								order by 1", root);
-			cmd.CommandType = System.Data.CommandType.Text;
-			cmd.Connection = sqlConnection1;
+
+
+			SqlDataReader reader;
 
 			sqlConnection1.Open();
-
 			reader = cmd.ExecuteReader();
 			// Data is accessible through the DataReader object here.
 			//JsonRelation mainData = new JsonRelation("Persons");
@@ -49,7 +50,9 @@ namespace DataAccessLayer
 			List<Node> nodes = new List<Node>();
 			List<Link> links = new List<Link>();
 
-			nodes.Add(new Node {name = root, group = 1});
+			List<ColumnData> columnDataRoot = doMoreShit(root);
+			nodes.Add(new Node { name = root, group = 1, ColumnData = columnDataRoot.ToArray() });
+			
 			int index = 1;
 
 			//List<Relation> relations = new List<Relation>();
@@ -58,13 +61,13 @@ namespace DataAccessLayer
 			{
 				if (reader.GetValue(0).ToString() == root)
 				{
-
-					nodes.Add(new Node() {name = reader.GetValue(2).ToString(), group = 2});
+					List<ColumnData> columnData = doMoreShit(reader.GetValue(2).ToString());
+					nodes.Add(new Node() {name = reader.GetValue(2).ToString(), group = 2, ColumnData = columnData.ToArray()});
 					links.Add(new Link() { source = 0, target = index });
 
 				}else{
-
-					nodes.Add(new Node() {name = reader.GetValue(0).ToString(), group = 3});
+					List<ColumnData> columnData = doMoreShit(reader.GetValue(0).ToString());
+					nodes.Add(new Node() { name = reader.GetValue(0).ToString(), group = 3, ColumnData = columnData.ToArray() });
 					links.Add(new Link() { source = index, target = 0 });
 				}
 
@@ -83,6 +86,30 @@ namespace DataAccessLayer
 
 			sqlConnection1.Close();
 			return mainData;
+		}
+
+		public List<ColumnData> doMoreShit(string tableName)
+		{
+			List<ColumnData> columnData = new List<ColumnData>();
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandType = System.Data.CommandType.Text;
+			cmd.Connection = sqlConnection1;
+			cmd.CommandText = String.Format(@"select DDC.ColumnName, EBCPT.typename from DDColumns DDC
+											join DDTables DDT on DDC.DDTable = DDT.ID
+											join EbcPropTypes EBCPT on EBCPT.PropTypeId = DDC.Domain
+											where DDT.TableName = '{0}'
+											order by 1", tableName);
+
+			SqlDataReader reader;
+			reader = cmd.ExecuteReader();
+
+			while (reader.Read())
+			{
+				columnData.Add(new ColumnData { Name = reader.GetValue(0).ToString(), Domain = reader.GetValue(1).ToString() });
+			}
+
+			return columnData;
 		}
 		
     }

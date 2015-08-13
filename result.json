@@ -2,7 +2,12 @@
     "nodes": [
         {
             "name": "SalesOrders",
-            "group": 1,
+            "group": 1
+
+        },
+        {
+            "name": "LastEvents",
+            "group": 3,
             "ColumnData": [
                 {
                     "Name": "Code",
@@ -14,11 +19,6 @@
                 }
 
             ]
-
-        },
-        {
-            "name": "LastEvents",
-            "group": 3
         },
         {
             "name": "PickingListLines",

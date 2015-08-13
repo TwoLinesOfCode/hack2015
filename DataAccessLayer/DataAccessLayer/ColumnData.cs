@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-	public class Node
+	public class ColumnData
 	{
-		public string name { get; set; }
-		public int group { get; set; }
-		public ColumnData[] ColumnData { get; set; }
+		public string Name { get; set; }
+		public string Domain { get; set; }
 	}
 }

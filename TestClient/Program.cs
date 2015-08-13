@@ -13,8 +13,7 @@ namespace TestClient
 		static void Main(string[] args)
 		{
 			SchemaReader rdr = new SchemaReader("SalesOrders");
-			JsonRelation relations = rdr.doshit();
-			System.IO.File.WriteAllText("result.json", relations.ToJSON());
+			System.IO.File.WriteAllText("result.json", rdr.doshit().ToJSON());
 
 			//foreach (Relation relation in relations){
 
