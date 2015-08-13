@@ -149,9 +149,7 @@
 
             node.append("title")
                 .text(function (d) {
-                    if (d.Datalist)
-                        return d.Datalist.columnName;
-                    return "are dige";
+                    return d.relationDescription;
                 });
 
             force.on("tick", function () {
@@ -186,7 +184,7 @@
                 //var y = e.pageY - $(document).scrollTop();
                 //$("#popupdiv").dialog("option", "position", [d.x, d.y]);
                 //if (d.Datalist)
-                //    $("#popupdiv").html("are dige").fadeIn();
+                //   $("#popupdiv").html("are dige").fadeIn();
 
             }
 
