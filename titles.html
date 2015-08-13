@@ -50,13 +50,14 @@
         </table>
     </div>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-git2.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script>
+        var myDialog;
         $(function () {
-            var myDialog = $("#popupdiv").dialog({
+            myDialog = $("#popupdiv").dialog({
                 autoOpen: false,
                 show: {
                     effect: "blind",
@@ -67,12 +68,6 @@
                     duration: 1
                 }
             });
-
-            myDialog.data("uiDialog")._title = function (title) {
-                title.html(this.options.title);
-            };
-
-            myDialog.dialog('option', 'title', '<a href="http://www.google.com">google</a>')
 
             $("#opener").click(function () {
                 $("#dialog").dialog("open");
@@ -176,6 +171,16 @@
                 //var templateControl = " {{#ColumnData}} <tr> <td>{{Name}}</td> <td>{{Domain}}</td> </tr> {{/ColumnData}}";
                 var html = Mustache.to_html(columnDataTemplate, d);
                 $('#columnGrid').html(html);
+                myDialog.data("uiDialog")._title = function (title) {
+                    title.html(this.options.title);
+                };
+    
+                myDialog.dialog('option', 'title', 
+                    '<a href="http://localhost/TwoLinesOfCode/docs/SysTableColumns.aspx?Table='+
+                    d.name +
+                    '&DatabaseID=%7b2011b525-d39c-49e8-96d6-5460bb3db3da%7d&_Division_=1" target="_blank">'+
+                    d.name + 
+                    '</a>');
                 $("#popupdiv").dialog({ height: 800 });
                 //alert(x);
             }
