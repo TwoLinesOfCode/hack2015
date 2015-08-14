@@ -28,6 +28,12 @@
 </head>
 
 <body>
+    <form id="form1">
+        <select id="sel1">
+            <option value="SalesOrder">SalesOrder</option>
+            <option value="Person">Person</option>
+        </select>
+    </form>
     <div id="legend" style="float:right;padding-right:50px;padding-top:50px;">
         <div id="mainTable" style="padding:10px;">Main Table</div>
         <div id="fromTable" style="padding:10px;">Is Referenced in</div>
@@ -166,7 +172,14 @@
             }
 
             function dblclick(d) {
-                d3.select(this).classed("fixed", d.fixed = false);
+                if (d.group == 1){
+                    d3.select(this).classed("fixed", d.fixed = false);
+                }
+                else {
+                    var frm = $("form");
+                    $("select").val(d.name);
+                    frm.submit();
+                }
             }
 
             function nodeclick(d) {
