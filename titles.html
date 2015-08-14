@@ -90,9 +90,9 @@
         $(document).ready(function () {
             columnDataTemplate = $('#rowTemplate').html();
         })
-        var width = 1400,
+        var width = $(window).width()-400,
             height = 800;
-
+        
         var color = d3.scale.category10();
 
         var svg = d3.select("body").append("svg")
