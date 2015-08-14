@@ -9,7 +9,7 @@
 
         .node text {
             pointer-events: none;
-            font: 10px sans-serif;
+            font: 0.7em sans-serif;
         }
 
         .ui-dialog-titlebar-close {
@@ -148,7 +148,7 @@
                 .text(function (d) { return d.name });
             node.append("circle")
             .attr("class", "node")
-                .attr("r", 8)
+                .attr("r", 12)
                 .on("dblclick", dblclick)
                 .on("click", nodeclick)
                 .style("fill", function (d) { return color(d.group); })
